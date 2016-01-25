@@ -1,0 +1,74 @@
+<div class="episode-overview">
+
+{% set episode_count = 0 %}
+{% for episode in podcast.episodes %}
+    {% set episode_count = episode_count + 1 %}
+    {% if episode_count == 1 %}
+		{# Featured Episode #}
+
+        <div class="featured-episode">
+            <h1 class="entry-title"><a title="{{ episode.title }}" href="{{ episode.url }}">{{ episode.title }}</a></h1>
+            <p class="episode_subtitle"><strong><em>{{ episode.subtitle }}</em></strong></p>
+
+            {{ episode.player }}
+            
+            <p>Veröffentlicht am {{ episode.publicationDate.format('d.m.Y') }}<br/>
+Dauer: {% if episode.duration.hours > 0 %}
+    {% if episode.duration.hours > 1 %}
+            {{ episode.duration.hours }} Stunden
+{% else %}       
+{{ episode.duration.hours }} Stunde
+{% endif %}
+{% endif %}
+{% if episode.duration.minutes > 0 %}
+{% if episode.duration.minutes > 1 %}
+{{ episode.duration.minutes }} Minuten
+{% else %}
+{{ episode.duration.minutes }} Minute
+{% endif %}
+{% endif %}
+
+</p>
+            <p class="episode-summary">{{ episode.summary }}</p>
+
+			<p><a title="{{ episode.title }}" href="{{ episode.url }}">Zur Sendungsseite mit Downloads, Links und anderen Episoden zum Thema ...</a></p>
+
+		</div>
+    {% endif %}
+{% endfor %}
+
+[podlove-podcast-subscribe-button size="small"]
+
+{% if episode_count > 1 %}
+	<h2>Frühere Sendungen</h2>
+    <div class="recent-episodes">
+    		{% set episode_count = 0 %}
+    		{% set recent_episodes = 4 %}
+    		    {% for episode in podcast.episodes %}
+    			    {% set episode_count = episode_count + 1 %}
+    			    {% if recent_episodes >= 0 and episode_count > 1 %}
+    			       {{ include ("Archivvorlage-ohne-Download") }}
+    			    {% endif %} 
+    			   {% set recent_episodes = recent_episodes - 1 %} 
+    		    {% endfor %}     
+    </div>
+{% endif %}
+</div>
+<hr>
+
+<h2><a href="http://resonator-podcast.de/podcast/page/2/">Weitere Sendungen</a></h2>
+
+<style>
+div.featured-episode {
+	background-color: #eee;
+    padding: 12px;
+	margin-bottom: 24px;
+}
+div.podlovewebplayer_wrapper {
+	margin-bottom: 24px;
+}
+
+div.episode-footer {
+	clear: right;
+}
+</style>
