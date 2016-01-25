@@ -1,0 +1,4 @@
+{% if not is_feed() %}
+  {{ episode.player }}
+{% endif %}
+<br>
