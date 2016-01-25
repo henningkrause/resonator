@@ -1,0 +1,5 @@
+{% for episode in podcast.episodes %}
+
+  {{ include ("Archivvorlage") }}
+              
+{% endfor %}
