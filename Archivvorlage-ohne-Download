@@ -1,0 +1,24 @@
+<hr>
+
+<strong><a href="{{ episode.url }}">{{ episode.title }}</a></strong>
+<br/><strong>Datum:</strong> {{ episode.publicationDate.format('d.m.Y') }}
+
+{% set duration = episode.duration %}
+<br/><strong>Dauer:</strong> 
+
+{% if episode.duration.hours > 0 %}
+    {% if episode.duration.hours > 1 %}
+            {{ episode.duration.hours }} Stunden
+{% else %}       
+{{ episode.duration.hours }} Stunde
+{% endif %}
+{% endif %}
+{% if episode.duration.minutes > 0 %}
+{% if episode.duration.minutes > 1 %}
+{{ episode.duration.minutes }} Minuten
+{% else %}
+{{ episode.duration.minutes }} Minute
+{% endif %}
+{% endif %}
+
+<p></p>{{ episode.subtitle }} </p>
