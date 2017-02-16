@@ -22,8 +22,6 @@
 {% endif %}
 
 <p></p>{{ episode.subtitle }} </p>
-
-
 <p><strong>Download:</strong> 
     {% for file in episode.files %}
         {% set asset = file.asset %}
