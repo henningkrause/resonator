@@ -37,7 +37,9 @@ Dauer: {% if episode.duration.hours > 0 %}
     {% endif %}
 {% endfor %}
 
-[podlove-podcast-subscribe-button size="small"]
+<center>
+    {{ podcast.subscribeButton({format: 'rectangle', color: '#00477b', style: 'outline', size: 'big auto'}) }}
+</center>
 
 {% if episode_count > 1 %}
 	<h2>Frühere Sendungen</h2>
@@ -57,6 +59,11 @@ Dauer: {% if episode.duration.hours > 0 %}
 <hr>
 
 <h2><a href="http://resonator-podcast.de/podcast/page/2/">Weitere Sendungen</a></h2>
+
+<div align="right">
+    {{ podcast.subscribeButton({format: 'rectangle', color: '#00477b', style: 'outline', size: 'big auto'}) }}
+</div>
+
 
 <style>
 div.featured-episode {
