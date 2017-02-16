@@ -1,6 +1,4 @@
-<!-- [podlove-episode-downloads style="buttons"] -->
-
-<strong></string>Download:</strong> 
+<strong>Download:</strong> 
     {% for file in episode.files %}
         {% set asset = file.asset %}
         {% if asset.downloadable %}
@@ -39,6 +37,13 @@ Mehr zum Thema: <br/>
 
 {% endif %}</p>
 
+<p></p>Themen: &nbsp;
+ {% for tag in episode.tags({order: "ASC", orderby: "count"}) %}
+    <a href="{{ tag.url }}">{{ tag.name }}</a> &nbsp;  
+  {% endfor %}</p>
+
 <p><em>Diese Folge zitieren:</em> Holger Klein/Helmholtz-Gemeinschaft: Resonator-Podcast: "{{ episode.title }}". {{ episode.publicationDate.format('d.m.Y') }}, {{ episode.url }} (CC-BY 4.0)</p>
 
-[podlove-podcast-subscribe-button size="small"]
+<center>
+    {{ podcast.subscribeButton({format: 'rectangle', color: '#00477b', style: 'outline', size: 'big auto'}) }}
+</center>
