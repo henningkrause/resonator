@@ -1,3 +1,33 @@
+{% set total = 0 %}
+{% for episode in podcast.episodes({category: 'Kurzfolge'}) %}
+    {% set total = total + episode.duration.totalMilliseconds %}
+{% endfor %}
+
+{# // is division and then rounding down (floor) #}
+
+{% set hours   = total  // (1000 * 3600) %}
+{% set minutes = (total // (1000 * 60)) % 60 %}
+{% set seconds = (total // 1000) % 60 %}
+
+{% if hours < 10 %}
+    {% set hours = "0" ~ hours %}
+{% endif %}
+
+{% if minutes < 10 %}
+    {% set minutes = "0" ~ minutes %}
+{% endif %}
+
+{% if seconds < 10 %}
+    {% set seconds = "0" ~ seconds %}
+{% endif %}
+
+<strong>Gesamtdauer aller {{ podcast.episodes({category: 'Kurzfolge'})|length }} kurzen Episoden: {{ hours }} Stunden {{ minutes }} Minuten {{ seconds }} Sekunden</strong>
+
+<p></p>
+
+
+
+
 {% for episode in podcast.episodes({category: 'Kurzfolge'}) %}
 
   {{ include ("Archivvorlage") }}
